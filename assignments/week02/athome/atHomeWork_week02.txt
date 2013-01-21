@@ -1,0 +1,16 @@
+Assignment for week2
+
+Files html_server.py to html_server5.py correspond to Steps 1 to Step5  lab work.
+Bonus points works for each for the steps are completed too.
+
+html_server6.py contains the work for assignment work. 
+have have html_server6.py running on my bluebox at "http://block647038-n5j.blueboxgrid.com:50000/"
+I will leave the script running not sure how long it is going to stay alive for.
+
+Here are list of things html_server6.py does
+
+1. Only GET requests are allowed, all other request results in 406 Not Acceptable
+2. lists Directory listing as a HTML with active links
+3. If URI is invalid returns a 404 Not Found
+4. All HTML,image and text files are displayed  properly.
+5. Get on make_time.py returns the current time in HTML format
