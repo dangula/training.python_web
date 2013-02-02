@@ -1,3 +1,4 @@
+#!/usr/bin/python
 
 
 class BookDB():
@@ -37,3 +38,7 @@ database = {
              'author' : 'Andrew Hunt, David Thomas',
            },
 }
+
+if __name__ == '__main__':
+    bdb = BookDB()
+    print bdb.titles()
