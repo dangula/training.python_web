@@ -152,7 +152,7 @@ And Third
 * It should look nice-ish
 * It should show off some aspect of what you've learned
 * It should take you about 15-20 hours to create (so small)
-* It will be due on the last day of class (March 10)
+* It will be due Friday following the last day of class (March 15)
 * We will spend half of each of the last two class session working on it in
   class.
 * **Questions?**
@@ -884,6 +884,10 @@ editor. Add the following and save the file:
     app = Flask(__name__) # this is already in the file
     app.config.from_object(__name__)
 
+.. class:: incremental small
+
+**Windows users, you will need to create C:\\tmp or change the pathname for
+DATABASE**
 
 Creating the Database
 ---------------------
@@ -1435,9 +1439,9 @@ And now the test itself (again, ``flaskr_tests.py``):
         rv = self.logout()
         assert 'You were logged out' in rv.data
         rv = self.login('adminx', 'default')
-        assert 'Invalid username' in rv.data
+        assert 'Invalid Login' in rv.data
         rv = self.login('admin', 'defaultx')
-        assert 'Invalid password' in rv.data
+        assert 'Invalid Login' in rv.data
 
 .. class:: incremental
 
