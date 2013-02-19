@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="metanav">
 <h5><a href="{% url login %}">login</a></h5>
-</div>
+<h1>Last 5 Blog Entries</h1>
+{% if entries|length > 0 %}
 {% for entry in entries %}
 <div class="entry">
    <li>
@@ -11,9 +11,12 @@
           <div class="entry_body">
           {{ entry.text|safe }}
           </div>
-          <li>{{entry.owned}}</li>
-          <li>{{entry.pub_date}}</li>
+          <li>By - {{entry.owned}}</li>
+          <li>EntryTime:{{entry.pub_date}}</li>
    </li>
 </div>
 {% endfor %}
+{% else %}
+<p>No entries created yet.  Get to work!</p>
+{% endif %}
 {% endblock %}

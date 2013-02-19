@@ -7,6 +7,9 @@ class entries(models.Model):
     text = models.CharField(max_length = 500)
     pub_date =  models.DateTimeField('date published')
     owned = models.ForeignKey(User)
+    
+    def __unicode__(self):
+        return self.title
 
     
     def published_today(self):

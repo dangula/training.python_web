@@ -11,11 +11,15 @@ urlpatterns = patterns('',
     url(r'^$', ListView.as_view(queryset=entries.objects.order_by('-pub_date')[:5],
             context_object_name='entries',
             template_name="blog/MainPage.html"), name="blog_list"),
-    url(r'^add/user/', stub, name="add_entry"),
-    url(r'^login/', stub, name="login"),
-    url(r'^logut/', stub, name="logout"),
-    url(r'^view/owner/', stub, name="showUserBlog"),
-    url(r'^view/dateRange/', stub, name="showBlogArchive"),
+    url(r'^login/$',
+        'django.contrib.auth.views.login',
+        {'template_name': 'blog/login.html'},
+        name="login"),
+    url(r'^logout/$',
+        'django.contrib.auth.views.logout',
+        {'next_page': '/'},
+        name="logout"),
+    url(r'^add/$', stub, name = "add_entry")
 
     )
 
