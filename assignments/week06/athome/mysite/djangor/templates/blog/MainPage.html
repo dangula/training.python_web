@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="metanav">
+<h5><a href="{% url login %}">login</a></h5>
+</div>
+{% for entry in entries %}
+<div class="entry">
+   <li>
+          <h2>{{ entry.title }}</h2>
+          <div class="entry_body">
+          {{ entry.text|safe }}
+          </div>
+          <li>{{entry.owned}}</li>
+          <li>{{entry.pub_date}}</li>
+   </li>
+</div>
+{% endfor %}
+{% endblock %}
