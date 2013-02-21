@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Djangor Micro-Blog</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/djangor.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <ul id="control-bar">
+          {% if user.is_authenticated %}
+           {% if user.is_staff or request.user.is_superuser %}
+            <li><a href="{% url admin:index %}">Admin</a></li>
+           {% endif %}
+            <li><a href="{% url add_entry %}">Post New Entry</a></li>
+            <li><a href="{% url logout %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url login %}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div id="content">
+      {% if messages %}
+       {% for message in messages %}
+       <p class="notification{% if message.tags %} {{ message.tags }}{% endif %}">
+         {{ message }}</p>
+       {% endfor %}
+      {% endif %}
+      {% block content %}
+      {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

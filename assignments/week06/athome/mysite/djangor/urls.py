@@ -1,25 +1,35 @@
 from django.conf.urls import patterns, url
-from django.http import HttpResponse
-from django.views.generic import ListView,DetailView
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
-from djangor.models import entries
 
-def stub(request, *args, **kwargs):
-    return HttpResponse('Blog Stub View', mimetype="text/plain")
+from djangor.models import Entry
+from djangor.forms import EntryForm
+from djangor.views import AddEntryView
+
 
 urlpatterns = patterns('',
-    url(r'^$', ListView.as_view(queryset=entries.objects.order_by('-pub_date')[:5],
-            context_object_name='entries',
-            template_name="blog/MainPage.html"), name="blog_list"),
-    url(r'^login/$',
-        'django.contrib.auth.views.login',
-        {'template_name': 'blog/login.html'},
-        name="login"),
-    url(r'^logout/$',
-        'django.contrib.auth.views.logout',
-        {'next_page': '/'},
-        name="logout"),
-    url(r'^add/$', stub, name = "add_entry")
-
-    )
-
+    # List view for all posts:
+    url(r'^$',
+        ListView.as_view(
+            queryset=Entry.objects.order_by('-pub_date')[:5],
+            context_object_name="entries",
+            template_name="blog/entry_list.html"
+        ),
+        name="entry_list"),
+    url(r'^add/$',
+        login_required(AddEntryView.as_view(
+            model=Entry,
+            form_class=EntryForm,
+            template_name="blog/entry_form.html",
+            success_url="/",
+        )),
+        name="add_entry"),
+    url(r'^accounts/profile/$',
+        ListView.as_view(
+            queryset=Entry.objects.all(),
+            context_object_name="entries",
+            template_name="blog/entry_list.html"
+        ),
+        name="entry_list"),
+)

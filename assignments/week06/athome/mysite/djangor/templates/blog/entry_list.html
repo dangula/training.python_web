@@ -1,0 +1,27 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<h1>Last 10 blog posts</h1>
+{% if entries|length > 0 %}
+<ul id="entries">
+  {% for entry in entries %}
+  <li>
+    <div class="entry">
+      <h2>{{ entry.title }}</h2>
+      <div class="entry-body">
+      {{ entry.text }}
+      </div>
+      <div class ="entry-author">
+      <p><strong>Author</strong>: {{entry.author}}</p>  
+    </div>
+    <div class ="entry-author">
+      <p><strong>publish date</strong>: {{entry.pub_date}}</p>  
+    </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No entries created yet.  Get to work!</p>
+{% endif %}
+{% endblock %}
